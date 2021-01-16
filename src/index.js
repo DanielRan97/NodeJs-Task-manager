@@ -10,8 +10,6 @@ app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
 
-console.log(process.env.MONGODB_URL);
-
 app.listen(port, () => {
     console.log(chalk.green.bold.inverse("Server is up on " + port));
 })
