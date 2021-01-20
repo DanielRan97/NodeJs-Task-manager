@@ -92,7 +92,7 @@ const uploadAvatarImage = multer({
 
        cb(undefined, true);
     }
-})
+});
 
 router.post('/users/me/avatar', auth, uploadAvatarImage.single('avatarImage'), async (req,res) => {
     const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
@@ -102,13 +102,13 @@ router.post('/users/me/avatar', auth, uploadAvatarImage.single('avatarImage'), a
 
 },(error, req, res, next) => {
     res.status(400).send({error: error.message});
-})
+});
 
 router.delete('/users/me/avatar', auth, async (req,res) => {
     req.user.avatar = undefined;
     await req.user.save();
     res.status(200).send('Avatar image deleted successfully');
-})
+});
 
 router.get('/users/:id/avatar', async (req, res) => {
     try{
